@@ -3,7 +3,7 @@
 /* @author cesar */
 package ServiceTechnicTv.Model.Entidades;
 
-public abstract class Usuario {
+public  class Usuario {
     protected String password;
     protected String nombre;
     protected String apellido;
@@ -13,6 +13,10 @@ public abstract class Usuario {
     protected Rol rol;
     protected String identificacion;
 
+    public Usuario() {
+    }
+
+    
     public Usuario(String nombre, String apellido, String identificacion) {
         this.nombre = nombre;
         this.apellido = apellido;

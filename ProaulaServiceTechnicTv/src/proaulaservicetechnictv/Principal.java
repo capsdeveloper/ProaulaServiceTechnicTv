@@ -4,6 +4,8 @@
  */
 package proaulaservicetechnictv;
 
+import ServiceTechnicTv.Vistas.VentanaPrincipal;
+
 /**
  *
  * @author cesar
@@ -15,6 +17,10 @@ public class Principal {
      */
     public static void main(String[] args) {
         // TODO code application logic here
+        
+        var ventana = new VentanaPrincipal();
+        ventana.setExtendedState(VentanaPrincipal.MAXIMIZED_BOTH);
+        ventana.setVisible(true);
     }
     
 }
