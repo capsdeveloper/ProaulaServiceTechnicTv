@@ -1,0 +1,51 @@
+@startuml
+
+
+
+left to right direction
+
+actor Administrador
+actor Tecnico
+actor Cliente
+actor Proveedor
+
+package Funcionalidades_del_admin {
+    usecase "Registrar Usuario" as UC1
+    usecase "Gestionar Inventario" as UC2
+    usecase "Generar Reportes" as UC3
+    usecase "Registrar Técnico" as UC4
+    usecase "Registrar Proveedor" as UC5
+}
+
+together {
+    usecase "Registrar Repuesto" as UC6
+    usecase "Registrar Marca" as UC7
+    usecase "Registrar Diagnóstico" as UC8
+    usecase "Registrar Reparación" as UC9
+}
+
+together {
+    usecase "Solicitar Mantenimiento" as UC10
+    usecase "Ver Estado de Mantenimiento" as UC11
+}
+
+together {
+    usecase "Registrar Envío de Repuestos" as UC12
+}
+
+Administrador -down-> UC1
+Administrador -down-> UC2
+Administrador -down-> UC3
+Administrador -down-> UC4
+Administrador -down-> UC5
+
+Tecnico -down-> UC6
+Tecnico -down-> UC7
+Tecnico -down-> UC8
+Tecnico -down-> UC9
+
+Cliente -down-> UC10
+Cliente -down-> UC11
+
+Proveedor -down-> UC12
+@enduml
