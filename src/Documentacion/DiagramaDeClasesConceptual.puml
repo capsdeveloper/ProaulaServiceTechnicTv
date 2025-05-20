@@ -1,0 +1,168 @@
+@startuml
+
+left to right direction
+
+'------
+' clases 
+' ------
+
+abstract class Usuario {
+    # String password;
+    # String nombre
+    # String apellido;
+    # String email;
+    # String numeroDeTelefono;
+    # String direccion;
+    # Rol rol;
+    --
+    + Persona(String nombre, String apellido, String identificacion)
+    + String getNombre()
+    + void setNombre(String nombre)
+    + String getApellido()
+    + void setApellido(String apellido)
+    + String getIdentificacion()
+    + void setIdentificacion(String identificacion)
+    + String toString()
+}
+
+
+class Rol {
+    - int id;
+    - String nombre;    
+    - String descripcion;
+}
+
+'**************
+' Relaciones
+'**************
+Usuario "*" -- "1" Rol : Pertenecer
+
+
+class Proveedor{
+    - String nit;
+}
+class Cliente {
+    - String identificacion;
+    - String tipoDeIndetificacion;
+    --
+    + Cliente()
+    + String getEmail()
+    + void setEmail(String email)
+    + String getDireccion()
+    + void setDireccion(String direccion)
+    + String toString()
+}
+
+class Tecnico {
+    - String especialidad;
+    --
+    + Tecnico()
+    + String getEspecialidad()
+    + void setEspecialidad(String especialidad)
+    + String toString()
+}
+
+'**************
+' Relaciones
+'**************
+
+Usuario <|-- Cliente : es un
+Usuario <|-- Proveedor : es un
+Usuario <|-- Tecnico : es un
+
+class Dispositivo {
+    - String serial;
+    - String modelo;
+    - String version;
+    - String tipo;
+    - String descripcion;
+    - Cliente propietario;
+    - Marca marca;
+    - List<Repuesto> respuestos;
+    --
+    + Dispositivo()
+    + String getTipo()
+    + void setTipo(String tipo)
+    + String getCodigo()
+    + void setCodigo(String codigo)
+    + String getDescripcion()
+    + void setDescripcion(String descripcion)
+    + Cliente getPropietario()
+    + void setPropietario(Cliente propietario)
+    + String toString()
+}
+
+class Marca{
+    - int id;
+    - String nombre;
+    - String icono;
+    - List<Dispositivo> dispositivos;
+}
+
+'**************
+' Relaciones
+'**************
+
+Marca "1" -- "*" Dispositivo : Identificar
+
+class Mantenimiento {
+    - int id;
+    - LocalDate fecha;
+    - String diagnostico;
+    - String reparacion;
+    - float precio;
+    - int tiempoDeGarantia;
+    - TipoGarantiaEnum tipoGarantia;
+    - boolean tieneGarantia;
+    - boolean enDomicilio;
+    - Dispositivo dispositivo;
+    - Tecnico tecnico;
+    - Cliente cliente;
+    - List<Repuesto> repuestos;
+    - String estado;
+    - 
+    --
+    + Mantenimiento()
+    + String toString()
+    + Object getCodigo()
+}
+
+class Repuesto{
+    - int id;
+    - String nombre;
+    - String marca;
+    - String tipo;
+    - float precio;
+    - String ubicacion;
+    - int stock;
+    - String descripcion;
+    - String foto;
+    - Marca marca;
+    - List<Dispositivos> dispositivos;
+}
+
+
+'**************
+' Relaciones
+'**************
+Mantenimiento "*" -- "1" Cliente : Solicitar
+Mantenimiento "*" -- "1" Dispositivo : Realizar
+Mantenimiento "*" -- "1" Tecnico : Realizar
+Mantenimiento "1..0" -- "*" Respuesto : Realizar
+Repuesto "*" -- "1" Marca : Identifcar
+Repuesto "*" -- "*" Dispositivo : Identifcar
+
+
+
+
+
+
+
+
+' Relaciones
+Dispositivo --> Cliente : propietario
+Mantenimiento --> Dispositivo : dispositivo
+Mantenimiento --> Tecnico : tecnico
+Mantenimiento --> Tecnico : tecnico
+
+@enduml
